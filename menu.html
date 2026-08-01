@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barber King - Menú Principal</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <a href="#main-contenido" class="enlace-saltar">Saltar al contenido principal</a>
+
+  <!-- Persona 2: navegación del menú principal, resaltado de sección activa en js/menu.js -->
+  <header class="header">
+    <h1>Barber King</h1>
+    <nav class="nav-principal">
+      <a href="menu.html">Inicio</a>
+      <a href="menu.html#servicios">Servicios</a>
+      <a href="agendar-cita.html">Agendar Cita</a>
+      <a href="mis-citas.html">Mis Citas</a>
+      <button id="btn-cerrar-sesion" type="button">Cerrar sesión</button>
+    </nav>
+  </header>
+
+  <main id="main-contenido" class="main" tabindex="-1">
+    <section id="inicio">
+      <h2>Bienvenido a Barber King</h2>
+      <p>Selecciona una opción del menú para agendar tu próxima cita o revisar tus reservas.</p>
+    </section>
+
+    <section id="servicios">
+      <h2>Nuestros Servicios</h2>
+      <ul class="lista-servicios">
+        <li>Corte de cabello</li>
+        <li>Arreglo de barba</li>
+        <li>Combo (corte + barba)</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2026 Barber King - Proyecto Desarrollo de Aplicaciones Móviles</p>
+  </footer>
+
+  <script src="js/auth.js"></script>
+  <script src="js/menu.js"></script>
+</body>
+</html>

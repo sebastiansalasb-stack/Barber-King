@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barber King - Agendar Cita</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <a href="#main-contenido" class="enlace-saltar">Saltar al contenido principal</a>
+
+  <header class="header">
+    <h1>Barber King</h1>
+    <nav class="nav-principal">
+      <a href="menu.html">Inicio</a>
+      <a href="menu.html#servicios">Servicios</a>
+      <a href="agendar-cita.html">Agendar Cita</a>
+      <a href="mis-citas.html">Mis Citas</a>
+      <button id="btn-cerrar-sesion" type="button">Cerrar sesión</button>
+    </nav>
+  </header>
+
+  <main id="main-contenido" class="main" tabindex="-1">
+    <section>
+      <h2>Agendar Cita</h2>
+
+      <!-- Persona 3: formulario de agendamiento + lógica en js/citas.js -->
+      <form id="form-agendar-cita" novalidate>
+        <div class="campo">
+          <label for="servicio">Servicio</label>
+          <select id="servicio" name="servicio" required>
+            <option value="">Selecciona un servicio</option>
+            <option value="corte">Corte de cabello</option>
+            <option value="barba">Arreglo de barba</option>
+            <option value="combo">Combo (corte + barba)</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="barbero">Barbero</label>
+          <select id="barbero" name="barbero" required>
+            <option value="">Selecciona un barbero</option>
+            <option value="barbero1">Barbero 1</option>
+            <option value="barbero2">Barbero 2</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="fecha">Fecha</label>
+          <input type="date" id="fecha" name="fecha" required>
+        </div>
+
+        <div class="campo">
+          <label for="hora">Hora</label>
+          <input type="time" id="hora" name="hora" required>
+        </div>
+
+        <p id="mensaje-confirmacion-cita" class="mensaje-exito" role="status" aria-live="polite" hidden></p>
+
+        <button type="submit">Confirmar Cita</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2026 Barber King - Proyecto Desarrollo de Aplicaciones Móviles</p>
+  </footer>
+
+  <script src="js/auth.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/citas.js"></script>
+</body>
+</html>

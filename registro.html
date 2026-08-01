@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barber King - Registro</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <a href="#main-contenido" class="enlace-saltar">Saltar al contenido principal</a>
+
+  <header class="header">
+    <h1>Barber King</h1>
+  </header>
+
+  <main id="main-contenido" class="main main--centrado" tabindex="-1">
+    <section class="tarjeta-login">
+      <h2>Crear Cuenta</h2>
+
+      <!-- Persona 1: formulario de registro + validación en js/auth.js -->
+      <form id="form-registro" novalidate>
+        <div class="campo">
+          <label for="nombre">Nombre completo</label>
+          <input type="text" id="nombre" name="nombre" autocomplete="name" required>
+        </div>
+
+        <div class="campo">
+          <label for="usuario">Usuario</label>
+          <input type="text" id="usuario" name="usuario" autocomplete="username" required>
+        </div>
+
+        <div class="campo">
+          <label for="contrasena">Contraseña</label>
+          <input type="password" id="contrasena" name="contrasena" autocomplete="new-password" required minlength="6">
+        </div>
+
+        <div class="campo campo--checkbox">
+          <input type="checkbox" id="terminos" name="terminos" required>
+          <label for="terminos">Acepto los Términos y Condiciones y la Política de Privacidad</label>
+        </div>
+
+        <p id="mensaje-error-registro" class="mensaje-error" role="alert" aria-live="assertive" hidden></p>
+
+        <button type="submit">Registrarse</button>
+      </form>
+
+      <p class="enlace-secundario">
+        ¿Ya tienes cuenta? <a href="index.html">Inicia sesión aquí</a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2026 Barber King - Proyecto Desarrollo de Aplicaciones Móviles</p>
+  </footer>
+
+  <script src="js/auth.js"></script>
+</body>
+</html>
