@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Barber King - Mis Citas</title>
+  <title>Barber King - Panel de Administrador</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
 </head>
@@ -23,25 +23,27 @@
       <h1>Barber King</h1>
     </div>
     <nav class="nav-principal">
-      <a href="menu.html">Inicio</a>
-      <a href="menu.html#servicios">Servicios</a>
-      <a href="menu.html#horarios">Horarios</a>
-      <a href="agendar-cita.html">Agendar Cita</a>
-      <a href="mis-citas.html">Mis Citas</a>
-      <button id="btn-cerrar-sesion" type="button">Cerrar sesión</button>
+      <span class="bienvenida-admin">Panel de Administrador · Alberto Martinez</span>
+      <button id="btn-cerrar-sesion-admin" type="button">Cerrar sesión</button>
     </nav>
   </header>
 
   <main id="main-contenido" class="main" tabindex="-1">
-    <div id="notificaciones-cliente" class="lista-notificaciones" aria-live="polite" hidden></div>
+    <div id="notificaciones-admin" class="lista-notificaciones" aria-live="polite" hidden></div>
 
     <section>
-      <h2>Mis Citas</h2>
+      <h2>Solicitudes de Reprogramación</h2>
 
-      <!-- Persona 3: listado y cancelación de citas, generado dinámicamente en js/citas.js -->
-      <div id="lista-citas" class="lista-citas">
-        <!-- Las tarjetas de citas se insertan aquí mediante JavaScript -->
-        <p id="mensaje-sin-citas" role="status" aria-live="polite" hidden>No tienes citas agendadas todavía.</p>
+      <div id="lista-solicitudes-reprogramacion" class="lista-citas">
+        <p id="mensaje-sin-solicitudes" role="status" aria-live="polite" hidden>No hay solicitudes de reprogramación pendientes.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Todas las Citas</h2>
+
+      <div id="lista-admin-citas" class="lista-citas">
+        <p id="mensaje-sin-citas-admin" role="status" aria-live="polite" hidden>No hay citas agendadas todavía.</p>
       </div>
     </section>
   </main>
@@ -51,7 +53,7 @@
   </footer>
 
   <script src="js/auth.js"></script>
-  <script src="js/menu.js"></script>
   <script src="js/citas.js"></script>
+  <script src="js/admin.js"></script>
 </body>
 </html>

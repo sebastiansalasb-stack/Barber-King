@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Barber King - Menú Principal</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
 </head>
 <body>
 
@@ -12,10 +13,20 @@
 
   <!-- Persona 2: navegación del menú principal, resaltado de sección activa en js/menu.js -->
   <header class="header">
-    <h1>Barber King</h1>
+    <div class="marca">
+      <svg class="icono-marca" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+        <circle cx="6" cy="6" r="3"></circle>
+        <circle cx="6" cy="18" r="3"></circle>
+        <line x1="20" y1="4" x2="8.12" y2="15.88"></line>
+        <line x1="14.47" y1="14.48" x2="20" y2="20"></line>
+        <line x1="8.12" y1="8.12" x2="12" y2="12"></line>
+      </svg>
+      <h1>Barber King</h1>
+    </div>
     <nav class="nav-principal">
       <a href="menu.html">Inicio</a>
       <a href="menu.html#servicios">Servicios</a>
+      <a href="menu.html#horarios">Horarios</a>
       <a href="agendar-cita.html">Agendar Cita</a>
       <a href="mis-citas.html">Mis Citas</a>
       <button id="btn-cerrar-sesion" type="button">Cerrar sesión</button>
@@ -31,9 +42,51 @@
     <section id="servicios">
       <h2>Nuestros Servicios</h2>
       <ul class="lista-servicios">
-        <li>Corte de cabello</li>
-        <li>Arreglo de barba</li>
-        <li>Combo (corte + barba)</li>
+        <li>
+          <svg class="icono-servicio" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <circle cx="6" cy="6" r="3"></circle>
+            <circle cx="6" cy="18" r="3"></circle>
+            <line x1="20" y1="4" x2="8.12" y2="15.88"></line>
+            <line x1="14.47" y1="14.48" x2="20" y2="20"></line>
+            <line x1="8.12" y1="8.12" x2="12" y2="12"></line>
+          </svg>
+          Corte de cabello
+        </li>
+        <li>
+          <svg class="icono-servicio" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M4 4 L20 4 L16 12 L8 12 Z"></path>
+            <line x1="12" y1="12" x2="12" y2="20"></line>
+          </svg>
+          Arreglo de barba
+        </li>
+        <li>
+          <svg class="icono-servicio" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="9"></circle>
+            <line x1="12" y1="8" x2="12" y2="16"></line>
+            <line x1="8" y1="12" x2="16" y2="12"></line>
+          </svg>
+          Combo (corte + barba)
+        </li>
+      </ul>
+    </section>
+
+    <section id="horarios">
+      <h2>Horario de Atención</h2>
+      <ul class="lista-horarios">
+        <li>
+          <svg class="icono-servicio" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="9"></circle>
+            <polyline points="12 7 12 12 15.5 14"></polyline>
+          </svg>
+          <span><strong>Lunes a Sábado:</strong> 10:00 a. m. – 7:00 p. m.</span>
+        </li>
+        <li>
+          <svg class="icono-servicio" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="9"></circle>
+            <polyline points="12 7 12 12 15.5 14"></polyline>
+          </svg>
+          <span><strong>Domingos:</strong> 12:00 p. m. – 6:00 p. m.</span>
+        </li>
       </ul>
     </section>
   </main>

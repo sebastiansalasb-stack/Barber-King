@@ -5,16 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Barber King - Agendar Cita</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
 </head>
 <body>
 
   <a href="#main-contenido" class="enlace-saltar">Saltar al contenido principal</a>
 
   <header class="header">
-    <h1>Barber King</h1>
+    <div class="marca">
+      <svg class="icono-marca" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+        <circle cx="6" cy="6" r="3"></circle>
+        <circle cx="6" cy="18" r="3"></circle>
+        <line x1="20" y1="4" x2="8.12" y2="15.88"></line>
+        <line x1="14.47" y1="14.48" x2="20" y2="20"></line>
+        <line x1="8.12" y1="8.12" x2="12" y2="12"></line>
+      </svg>
+      <h1>Barber King</h1>
+    </div>
     <nav class="nav-principal">
       <a href="menu.html">Inicio</a>
       <a href="menu.html#servicios">Servicios</a>
+      <a href="menu.html#horarios">Horarios</a>
       <a href="agendar-cita.html">Agendar Cita</a>
       <a href="mis-citas.html">Mis Citas</a>
       <button id="btn-cerrar-sesion" type="button">Cerrar sesión</button>
@@ -24,6 +35,23 @@
   <main id="main-contenido" class="main" tabindex="-1">
     <section>
       <h2>Agendar Cita</h2>
+
+      <ul class="lista-horarios lista-horarios--nota">
+        <li>
+          <svg class="icono-servicio" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="9"></circle>
+            <polyline points="12 7 12 12 15.5 14"></polyline>
+          </svg>
+          <span><strong>Lunes a Sábado:</strong> 10:00 a. m. – 7:00 p. m.</span>
+        </li>
+        <li>
+          <svg class="icono-servicio" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="9"></circle>
+            <polyline points="12 7 12 12 15.5 14"></polyline>
+          </svg>
+          <span><strong>Domingos:</strong> 12:00 p. m. – 6:00 p. m.</span>
+        </li>
+      </ul>
 
       <!-- Persona 3: formulario de agendamiento + lógica en js/citas.js -->
       <form id="form-agendar-cita" novalidate>
@@ -41,8 +69,8 @@
           <label for="barbero">Barbero</label>
           <select id="barbero" name="barbero" required>
             <option value="">Selecciona un barbero</option>
-            <option value="barbero1">Barbero 1</option>
-            <option value="barbero2">Barbero 2</option>
+            <option value="barbero1">Alberto Martinez</option>
+            <option value="barbero2">Raul Gonzales</option>
           </select>
         </div>
 
@@ -52,8 +80,39 @@
         </div>
 
         <div class="campo">
-          <label for="hora">Hora</label>
-          <input type="time" id="hora" name="hora" required>
+          <fieldset class="campo-hora">
+            <legend>Hora</legend>
+            <div class="campo-hora-selects">
+              <select id="hora-horas" name="hora-horas" aria-label="Hora" required>
+                <option value="">HH</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+              <span aria-hidden="true">:</span>
+              <select id="hora-minutos" name="hora-minutos" aria-label="Minutos" required>
+                <option value="">MM</option>
+                <option value="00">00</option>
+                <option value="15">15</option>
+                <option value="30">30</option>
+                <option value="45">45</option>
+              </select>
+              <select id="hora-periodo" name="hora-periodo" aria-label="AM o PM" required>
+                <option value="">AM/PM</option>
+                <option value="AM">AM</option>
+                <option value="PM">PM</option>
+              </select>
+            </div>
+          </fieldset>
         </div>
 
         <p id="mensaje-confirmacion-cita" class="mensaje-exito" role="status" aria-live="polite" hidden></p>

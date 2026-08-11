@@ -42,9 +42,18 @@
   padding: 0;
 }
 
+html {
+  height: 100%;
+}
+
 body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
   font-family: "Segoe UI", Arial, sans-serif;
-  background-color: var(--color-fondo);
+  /* Degradado sutil en vez de negro plano: mismo nivel de oscuridad/contraste,
+     solo un poco de profundidad visual. */
+  background: radial-gradient(ellipse at top, #262626 0%, var(--color-fondo) 60%);
   color: var(--color-texto);
   line-height: 1.5;
 }
@@ -52,6 +61,36 @@ body {
 a {
   color: var(--color-primario);
   text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+/* Títulos con una tipografía con más carácter (pila de fuentes del sistema,
+   sin depender de internet), separada de la tipografía de lectura del resto. */
+h1,
+h2,
+h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  letter-spacing: 0.02em;
+}
+
+/* Ícono de marca (header) e íconos de servicio: reutilizan el color dorado
+   y heredan tamaño/posición del contexto donde se usan. */
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.icono-marca {
+  color: var(--color-primario);
+  flex-shrink: 0;
+}
+
+.icono-servicio {
+  color: var(--color-primario);
+  flex-shrink: 0;
+  margin-right: 0.6rem;
+  vertical-align: middle;
 }
 
 /* --- Encabezado y navegación --- */
@@ -82,11 +121,27 @@ a {
   padding-bottom: 0.2rem;
 }
 
+.nav-principal a {
+  transition: color 0.15s ease;
+}
+
 /* --- Layout principal --- */
 .main {
+  flex: 1 0 auto;
+  width: 100%;
   padding: 2rem;
   max-width: 900px;
   margin: 0 auto;
+}
+
+/* --- Pie de página: siempre queda al fondo de la pantalla,
+   incluso si el contenido de la página es corto --- */
+.footer {
+  flex-shrink: 0;
+  padding: 1.5rem 2rem;
+  text-align: left;
+  color: var(--color-texto-secundario);
+  font-size: 0.85rem;
 }
 
 .main--centrado {
@@ -103,6 +158,12 @@ a {
   border-radius: var(--radio-borde);
   width: 100%;
   max-width: 380px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.tarjeta-login:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
 }
 
 .campo {
@@ -118,6 +179,30 @@ a {
   gap: 0.5rem;
 }
 
+/* Grupo "Hora" (horas + minutos + AM/PM) dentro de agendar-cita.html */
+.campo-hora {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.campo-hora legend {
+  font-size: 0.9rem;
+  margin-bottom: 0.35rem;
+  padding: 0;
+}
+
+.campo-hora-selects {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.campo-hora-selects select {
+  flex: 1;
+  min-width: 0;
+}
+
 input[type="text"],
 input[type="password"],
 input[type="date"],
@@ -128,6 +213,18 @@ select {
   border: 1px solid #444;
   background-color: var(--color-fondo);
   color: var(--color-texto);
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+/* Además del contorno nativo del navegador (que se mantiene intacto por
+   accesibilidad), un leve resplandor dorado al enfocar un campo. */
+input[type="text"]:focus-visible,
+input[type="password"]:focus-visible,
+input[type="date"]:focus-visible,
+input[type="time"]:focus-visible,
+select:focus-visible {
+  border-color: var(--color-primario);
+  box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.25);
 }
 
 button {
@@ -138,10 +235,17 @@ button {
   background-color: var(--color-primario);
   color: #1a1a1a;
   font-weight: bold;
+  transition: background-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 button:hover {
   background-color: var(--color-primario-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+button:focus-visible {
+  box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.35);
 }
 
 .mensaje-error {
@@ -158,15 +262,44 @@ button:hover {
   color: var(--color-texto-secundario);
 }
 
+/* --- Inicio y Servicios: tipografía fluida, se adapta al ancho de pantalla --- */
+#inicio h2,
+#servicios h2 {
+  font-size: clamp(1.4rem, 4vw, 2.25rem);
+}
+
+#inicio p,
+.lista-servicios li {
+  font-size: clamp(0.95rem, 1.5vw + 0.5rem, 1.15rem);
+}
+
 /* --- Servicios y citas --- */
-.lista-servicios {
+.lista-servicios,
+.lista-horarios {
   list-style: none;
   margin-top: 1rem;
 }
 
-.lista-servicios li {
+.lista-servicios li,
+.lista-horarios li {
+  display: flex;
+  align-items: center;
   padding: 0.5rem 0;
   border-bottom: 1px solid #333;
+}
+
+/* Variante "nota": la misma lista de horarios, pero como recuadro
+   informativo (ej. arriba del formulario de Agendar Cita). */
+.lista-horarios--nota {
+  background-color: var(--color-superficie);
+  border-radius: var(--radio-borde);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.lista-horarios--nota li {
+  border-bottom: none;
+  padding: 0.25rem 0;
 }
 
 .lista-citas {
@@ -186,6 +319,205 @@ button:hover {
   align-items: center;
   flex-wrap: wrap;
   gap: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.tarjeta-cita:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  transform: translateY(-2px);
+}
+
+/* Etiqueta de estado de una cita (Pendiente / Completada) */
+.estado-badge {
+  display: inline-block;
+  margin-top: 0.35rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.estado-pendiente {
+  background-color: rgba(201, 162, 39, 0.2);
+  color: var(--color-primario);
+}
+
+.estado-completada {
+  background-color: rgba(76, 175, 128, 0.2);
+  color: var(--color-exito);
+}
+
+/* --- Panel de administrador --- */
+.bienvenida-admin {
+  color: var(--color-texto-secundario);
+  font-weight: bold;
+}
+
+.acciones-cita {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* Aviso dentro de una tarjeta de cita cuando ya se envió una solicitud
+   de reprogramación y se está esperando respuesta del administrador. */
+.aviso-solicitud-pendiente {
+  color: var(--color-texto-secundario);
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+/* Avisos de citas canceladas (cliente → admin, o admin → cliente) */
+.lista-notificaciones {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.notificacion {
+  background-color: rgba(224, 82, 82, 0.12);
+  border: 1px solid var(--color-error);
+  border-radius: var(--radio-borde);
+  padding: 0.75rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.notificacion button {
+  background-color: transparent;
+  color: var(--color-error);
+  border: 1px solid var(--color-error);
+  padding: 0.3rem 0.8rem;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.notificacion button:hover {
+  background-color: var(--color-error);
+  color: #1a1a1a;
+}
+
+/* --- Documento legal (Términos y Condiciones) --- */
+.main--legal {
+  max-width: 1100px;
+}
+
+.portada-legal {
+  text-align: center;
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #333;
+}
+
+.portada-legal h2 {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.subtitulo-legal {
+  color: var(--color-texto-secundario);
+  margin-bottom: 0.5rem;
+}
+
+.meta-legal {
+  color: var(--color-texto-secundario);
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+.documento-legal-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+/* Tabla de contenidos: se mantiene visible al hacer scroll (estilo "sitio legal profesional") */
+.tabla-contenidos {
+  position: sticky;
+  top: 1.5rem;
+  background-color: var(--color-superficie);
+  border-radius: var(--radio-borde);
+  padding: 1.25rem;
+}
+
+.tabla-contenidos h3 {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-texto-secundario);
+  margin-bottom: 0.75rem;
+}
+
+.tabla-contenidos ol {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  counter-reset: item;
+}
+
+.tabla-contenidos a {
+  color: var(--color-texto);
+  font-size: 0.9rem;
+  display: block;
+}
+
+.tabla-contenidos a:hover {
+  color: var(--color-primario);
+}
+
+.documento-legal {
+  font-size: 1.02rem;
+  line-height: 1.7;
+}
+
+.documento-legal section {
+  margin-bottom: 2.25rem;
+  scroll-margin-top: 1.5rem;
+}
+
+.documento-legal h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-primario);
+  border-bottom: 1px solid #333;
+  padding-bottom: 0.5rem;
+}
+
+.documento-legal p,
+.documento-legal li {
+  margin-bottom: 0.75rem;
+}
+
+.documento-legal ul {
+  padding-left: 1.5rem;
+}
+
+.documento-legal code {
+  background-color: var(--color-superficie);
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.volver-legal {
+  margin-top: 2rem;
+}
+
+@media (max-width: 800px) {
+  .documento-legal-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .tabla-contenidos {
+    position: static;
+  }
 }
 
 /* --- Responsive --- */

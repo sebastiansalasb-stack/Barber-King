@@ -71,16 +71,22 @@ async function manejarRegistro(evento) {
   const nombre = document.getElementById("nombre").value.trim();
   const usuario = document.getElementById("usuario").value.trim();
   const contrasena = document.getElementById("contrasena").value;
+  const confirmarContrasena = document.getElementById("confirmar-contrasena").value;
   const aceptaTerminos = document.getElementById("terminos").checked;
   const mensajeError = document.getElementById("mensaje-error-registro");
 
-  if (!nombre || !usuario || !contrasena) {
+  if (!nombre || !usuario || !contrasena || !confirmarContrasena) {
     mostrarMensaje(mensajeError, "Por favor completa todos los campos.");
     return;
   }
 
   if (contrasena.length < 6) {
     mostrarMensaje(mensajeError, "La contraseña debe tener al menos 6 caracteres.");
+    return;
+  }
+
+  if (contrasena !== confirmarContrasena) {
+    mostrarMensaje(mensajeError, "Las contraseñas no coinciden.");
     return;
   }
 
@@ -102,7 +108,7 @@ async function manejarRegistro(evento) {
   const sal = generarSal();
   const hash = await hashearContrasena(contrasena, sal);
 
-  usuarios.push({ nombre, usuario, sal, hash });
+  usuarios.push({ nombre, usuario, sal, hash, rol: "cliente" });
   guardarUsuarios(usuarios);
 
   window.location.href = "index.html";
@@ -123,7 +129,9 @@ async function manejarInicioSesion(evento) {
     (u) => u.usuario.toLowerCase() === usuario.toLowerCase()
   );
 
-  if (!usuarioEncontrado) {
+  // Las cuentas de administrador solo inician sesión desde admin-login.html,
+  // nunca desde el login de clientes (aunque la contraseña sea correcta).
+  if (!usuarioEncontrado || usuarioEncontrado.rol === "administrador") {
     mostrarMensaje(mensajeError, "Usuario o contraseña incorrectos.");
     return;
   }
